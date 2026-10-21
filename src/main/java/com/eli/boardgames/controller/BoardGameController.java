@@ -23,4 +23,9 @@ public class BoardGameController {
             @Valid @RequestBody BoardGameRequest request) {
         return service.create(request);
     }
+
+    @GetMapping("/{id}")
+    public BoardGameResponse getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
 }

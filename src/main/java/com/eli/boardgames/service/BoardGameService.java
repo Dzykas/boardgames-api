@@ -5,6 +5,7 @@ import com.eli.boardgames.dto.BoardGameRequest;
 import com.eli.boardgames.model.BoardGame;
 import com.eli.boardgames.repository.BoardGameRepository;
 import org.springframework.stereotype.Service;
+import com.eli.boardgames.exception.BoardGameNotFoundException;
 
 @Service
 public class BoardGameService {
@@ -30,6 +31,12 @@ public class BoardGameService {
         return toResponse(saved);
     }
 
+    public BoardGameResponse getById(Long id) {
+        BoardGame game = repository.findById(id)
+                .orElseThrow(() -> new BoardGameNotFoundException(id));
+        return toResponse(game);
+    }
+
     private BoardGameResponse toResponse(BoardGame game) {
         return new BoardGameResponse(
                 game.getId(),
@@ -44,4 +51,6 @@ public class BoardGameService {
                 game.getUpdatedAt()
         );
     }
+
+
 }
