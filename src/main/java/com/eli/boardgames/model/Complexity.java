@@ -4,5 +4,5 @@ public enum Complexity {
     LIGHT,
     MEDIUM,
     HEAVY,
-    EXTREME // looking at you Campaign for North Africa
+    EXTREME // TCFNA type deal
 }

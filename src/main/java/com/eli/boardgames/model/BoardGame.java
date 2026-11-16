@@ -37,10 +37,9 @@ public class BoardGame {
 
     private LocalDate purchaseDate;
 
-    //TODO: uncomment when User is implemented
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "user_id", nullable = false)
-    //private User owner;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User owner;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -50,8 +49,7 @@ public class BoardGame {
     @Column(nullable = false)
     private Instant updatedAt;
 
-    public BoardGame() {
-    }
+    public BoardGame() {}
 
     public Long getId() {
         return id;
@@ -113,10 +111,17 @@ public class BoardGame {
         this.purchaseDate = purchaseDate;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     public Instant getCreatedAt() {
         return createdAt;
     }
-
 
     public Instant getUpdatedAt() {
         return updatedAt;
